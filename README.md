@@ -1,54 +1,122 @@
-# webpack-template
+# Dropdown Menu
 
-This repository is a template for front-end projects using webpack.
+This module provides a method to create a dropdown menu.
 
-Run the following to install the dependencies:
-
-```console
-npm install
+```javascript
+const createDropdownMenu: (dropdownTitle: any, menuItems: any, hover?: boolean, vertical?: boolean) => HTMLDivElement
 ```
 
-Run the following to remove any unneeded dependencies:
+## Installation
+
+The following command can be used to add the dropdown menu to an existing project:
 
 ```console
-npm uninstall dependency-name
+npm install @conkliniam/dropdown-menu
 ```
 
-replacing dependency-name with the name of the dependency
+## Usage
 
-The following scripts are also included in the package.json file
+The following statement can be used to include the createDropdownMenu method in a JavaScript file:
 
-```console
-npm start
+```javascript
+const { createDropdownMenu } = require("@conkliniam/dropdown-menu");
 ```
 
-Starts the development server and runs the code
+Here is some example usage that includes some nested dropdown menus:
 
-```console
-npm run build
+```javascript
+const container = document.querySelector("#container");
+
+const sevenTwoDropdown = createDropdownMenu(
+  "VII II",
+  ["VII II I", "VII II II", "VII II III", "VII II IV"],
+  true,
+  false,
+);
+
+const sevenDropdown = createDropdownMenu(
+  "VII",
+  ["VII I", sevenTwoDropdown, "VII III", "VII IV"],
+  true,
+  true,
+);
+const romanNumeralDropdown = createDropdownMenu(
+  "Roman Numerals",
+  ["I", "II", "III", "IV", "V", "VI", sevenDropdown, "VIII"],
+  false,
+  false,
+);
+
+const angryDropdown = createDropdownMenu(
+  "Angry",
+  ["Ticked Off", "Furious", "Enraged"],
+  true,
+  true,
+);
+
+const moodDropdown = createDropdownMenu(
+  "Moods",
+  ["Happy", angryDropdown, "Sad"],
+  false,
+  false,
+);
+
+container.appendChild(romanNumeralDropdown);
+container.appendChild(moodDropdown);
 ```
 
-Creates the production build
+This code results in the following dropdown menus:
+![Roman Numerals Dropdown](/images/romanNumeralsDropdown.png)
+![Moods Dropdown](/images/moodsDropdown.png)
 
-```console
-npm run deploy
+## Parameters
+
+The parameters for the createDropdownMenu function include:
+
+- Parameter: dropdownTitle
+  - Type: Element or String
+  - Description: This is the value that clicking or hovering causes the dropdown menu to open. Anything other than a String or Element is converted into a String. For Strings, a button is created with the String as the content.
+- Parameter: menuItems
+  - Type: list of Element or String
+  - Description: These values are added to the the part of the dropdown menu that opens up. Buttons are created for Strings.
+- Parameter: hover
+  - Type: boolean
+  - Default Value: true
+  - Description: If true, open dropdown on hover, if false, open dropdown on click
+- Parameter: vertical
+  - Type: boolean
+  - Default Value: false
+  - Decription: If true, display the menu items verically, if false, display the menu items horizontally
+
+## Styling
+
+The dropdown menus created include the following classes.
+
+```css
+/* The entire div containing the dropdown menu */
+.dropdown-container {
+}
+
+/* The title for the dropdown menu */
+.dropdown-menu {
+}
+
+/* The content of the dropdown menu */
+/* This is the part that opens up */
+.dropdown-content {
+}
+
+/* A menu item within the content */
+.dropdown-item {
+}
 ```
 
-Does a subtree push of the dist folder to the gh-pages branch.
+There are also some CSS custom properties that can be adjusted to customize the appearance of the dropdown menu.
 
-Before running npm run deploy
-
-1.  Remove dist from .gitignore
-2.  Run the following commands:
-
-```console
-npm run build
+```css
+.dropdown-container {
+  --menu-item-height: 30px;
+  --menu-item-width: 100px;
+  --dropdown-hover-color: rgb(133, 133, 163);
+}
 ```
-
-```console
-git add dist && git commit -m "commit-message"
-```
-
-replacing commit-message with the desired commit message.
-
-[ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) have been added to the dependencies.
