@@ -66,8 +66,8 @@ container.appendChild(moodDropdown);
 ```
 
 This code results in the following dropdown menus:
-![Roman Numerals Dropdown](/images/romanNumeralsDropdown.png)
-![Moods Dropdown](/images/moodsDropdown.png)
+![Roman Numerals Dropdown](https://github.com/conkliniam/dropdown-menu/blob/main/images/romanNumeralsDropdown.png?raw=true)
+![Moods Dropdown](https://github.com/conkliniam/dropdown-menu/blob/main/images/moodsDropdown.png?raw=true)
 
 ## Parameters
 

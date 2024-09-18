@@ -4,8 +4,7 @@
   "description": "A reusable dropdown menu.",
   "main": "dist/index.js",
   "files": [
-    "dist/index.js",
-    "images/*"
+    "dist/index.js"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
